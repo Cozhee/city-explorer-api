@@ -1,5 +1,6 @@
 'use strict'
 
+const axios = require('axios')
 const express = require('express');
 require('dotenv').config()
 const app = express()
@@ -7,41 +8,34 @@ const PORT = process.env.PORT || 3002;
 const cors = require("cors");
 app.use(cors());
 
-let data = require('./data/weather.json');
-
 
 app.get('/', (request, response) => {
     response.send('Hey there')
 })
 
-app.get('/weather', (request, response) => {
-        const city = request.query.city
+app.get('/weather', async (request, response) => {
         const latitude = request.query.lat
         const longitude = request.query.lon
-
-        const found = data.find((location) => location.city_name === city && location.lon == longitude && location.lat == latitude)
-
         try {
-            const something = found.data.map(something => new Forecast(something))
+            const dailyWeatherData = await axios.get(`https://api.weatherbit.io/v2.0/forecast/daily?key=${process.env.WEATHER_API_KEY}&lat=${latitude}&lon=${longitude}&days=4`)
+            const cityData = dailyWeatherData.data.data
+            const something = cityData.map(something => new Forecast(something))
             response.send(something)
         } catch(err) {
             response.send(err.message)
         }
 
-        // response.send(found.data[0])
 });
+
+app.use((error, request, response, next) => {
+    response.status(500).send(error.message);
+    console.log(error.message);
+})
 
 //catch all star route
 app.get('*', (request, response) => {
     response.send('The request could not be found')
 });
-
-// class Forecast {
-//     constructor(weatherObject) {
-//         this.date = weatherObject.datetime;
-//         this.description = weatherObject.weather;
-//     }
-// }
 
 function Forecast(day) {
     this.date = day.datetime
