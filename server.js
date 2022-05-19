@@ -27,6 +27,17 @@ app.get('/weather', async (request, response) => {
 
 });
 
+app.get('/movies', async (request, response) => {
+    const city = request.query.city
+    try {
+        const fetchedMovies = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIE_API_KEY}&language=en-US&query=${city}`)
+        const movieList = fetchedMovies.data.results.map(movie => new Movie(movie))
+        response.send(movieList)
+    } catch(err) {
+        response.send(err.message)
+    }
+})
+
 app.use((error, request, response, next) => {
     response.status(500).send(error.message);
     console.log(error.message);
@@ -40,6 +51,13 @@ app.get('*', (request, response) => {
 function Forecast(day) {
     this.date = day.datetime
     this.description = day.weather.description
+}
+
+function Movie(movie) {
+    console.log(movie)
+    this.title = movie.title
+    this.overview = movie.overview
+    this.release_date = movie.release_date
 }
 
 app.listen(PORT, () => console.log(`listening on port ${PORT}`))
