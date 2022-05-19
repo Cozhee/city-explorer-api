@@ -19,6 +19,10 @@
 
 ## Credit and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
+WWRC - Colab with [Dylan](https://github.com/GetUllrichorDieTrying)
+![Screen Shot 2022-05-19 at 1 21 20 PM](https://user-images.githubusercontent.com/55909913/169403646-dea74294-cc10-4ee2-8fab-a5945042677b.png)
+
+
 WRRC - Colab with [Ben] (https://github.com/bc0351)
 ![Screen Shot 2022-05-18 at 2 34 42 PM](https://user-images.githubusercontent.com/55909913/169186329-7657fd73-821d-468b-8db9-4a593f298a79.png)
 
