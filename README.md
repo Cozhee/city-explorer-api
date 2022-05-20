@@ -19,7 +19,7 @@
 
 ## Credit and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
-WWRC - Colab with [Guy](https://github.com/GuyFarley)
+WWRC - Colab with [Guy](https://github.com/GuyFarley) - Lab10
 ![Lab_10_WRRC](https://user-images.githubusercontent.com/55909913/169622793-9f0f2fc2-789b-4ff1-a30b-778f35327221.jpg)
 
 
